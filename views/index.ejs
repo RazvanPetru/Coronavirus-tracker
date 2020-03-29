@@ -7,6 +7,7 @@
   <title>Coronavirus Tracker</title>
   <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <script defer src="../public/js/index.js"></script>
 </head>
 
 <body>
@@ -37,24 +38,28 @@
   </header>
 
   <section class="countries">
-    <div class="countries__country">
-      <p id="romania"><%- countries[134] %></p>
+    <% for(let i = 0; i < countries.length; i++) { %>
+    <div class="countries__container">
+      <div class="countries__country">
+        <button class="btn"><%- countries[i] %></button>
+      </div>
+      <div class="countries__detail">
+        <p class="country-detail">
+          Confirmed<br />
+          <span class="detail confirmed"><%= detailCountry.confirmed.value %></span>
+        </p>
+        <p class="country-detail">
+          Recovered<br />
+          <span class="detail recovered"><%= detailCountry.recovered.value %></span>
+        </p>
+        <p class="country-detail">
+          Deaths<br />
+          <span class="detail deaths"><%= detailCountry.deaths.value %></span>
+        </p>
+      </div>
     </div>
 
-    <div class="countries__detail">
-      <p class="country-detail">
-        Confirmed<br />
-        <span class="detail confirmed"><%= detailCountry.confirmed.value %></span>
-      </p>
-      <p class="country-detail">
-        Recovered<br />
-        <span class="detail recovered"><%= detailCountry.recovered.value %></span>
-      </p>
-      <p class="country-detail">
-        Deaths<br />
-        <span class="detail deaths"><%= detailCountry.deaths.value %></span>
-      </p>
-    </div>
+    <%}%>
 
   </section>
 </body>

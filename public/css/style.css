@@ -90,31 +90,41 @@ h1 {
 }
 
 .countries {
-  display: flex;
-  flex-direction: column;
-  width: 60%;
+  display: grid;
+  grid-gap: 10rem;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, auto));
+  width: 100%;
   text-align: center;
-  margin: 0 auto;
-  margin-top: 15rem;
+  justify-content: center;
+  margin-top: 30rem;
 }
 
 .countries__detail {
-  display: grid;
+  display: none;
   grid-template-columns: repeat(auto-fit, minmax(30rem, auto));
   justify-content: center;
   grid-gap: 2rem;
 }
 
-#romania {
+.countries__detail.active {
+  display: grid;
+}
+
+.btn {
   background-color: #6236ff;
   padding: 2.5rem 4rem;
-  max-width: 30rem;
+  width: 30rem;
   margin: 0 auto;
   border-radius: 2rem;
   box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
   color: #fbfdfc;
   margin-bottom: 4rem;
   font-size: 2rem;
+  cursor: pointer;
+}
+
+.btn:focus {
+  outline: 0;
 }
 
 .country-detail {
@@ -129,7 +139,6 @@ h1 {
   border-radius: 2rem;
   font-size: 2rem;
   transition: all 0.3s cubic-bezier(0.755, 0.05, 0.855, 0.06);
-  cursor: pointer;
 }
 
 .country-detail:hover {
