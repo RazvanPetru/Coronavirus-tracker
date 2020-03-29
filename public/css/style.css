@@ -5,64 +5,138 @@
 *,
 *:before,
 *:after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 62.5%
+  font-size: 62.5%;
 }
 
 body {
-    font-size: 1.6rem;
-    font-family: 'Roboto', sans-serif;
-    background-color: #1f2125;
-    padding: 2rem 2rem;
-    width: 100%;
+  font-size: 1.6rem;
+  font-family: "Roboto", sans-serif;
+  background-color: #f9fcff;
+  height: 100vh;
+  width: 100%;
 }
 
 .header {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 3rem 2rem;
 }
 
 .header__title,
 h1 {
-    color: #fbfdfc;
+  color: #1a1053;
 }
 
 .header__content {
-    text-align: center;
-    margin-top: 10rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, auto));
-    justify-content: center;
-    grid-gap: 1rem;
-    width: 100%;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, auto));
+  justify-content: center;
+  grid-gap: 1rem;
+  width: 100%;
 }
 
 .items {
-    padding-top: 1rem;
-    text-transform: uppercase;
-    color: #fbfdfc;
-    font-size: 4rem;
+  margin: 1rem 1rem;
+  padding-top: 1rem;
+  text-transform: uppercase;
+  color: #1a1053;
+  background-color: #fbfdfc;
+  font-size: 4rem;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
 }
 
 .item {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .confirmed {
-    color: orange;
+  color: #fa6400;
 }
 
 .recovered {
-    color: green;
+  color: #1cb142;
 }
 
 .deaths {
-    color: red;
+  color: #f9345e;
+}
+
+#covid {
+  color: #6236ff;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15rem;
+}
+
+.update-date {
+  color: #6236ff;
+  padding-top: 0.2rem;
+  font-weight: 500;
+}
+
+.countries {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 15rem;
+}
+
+.countries__detail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, auto));
+  justify-content: center;
+  grid-gap: 2rem;
+}
+
+#romania {
+  background-color: #6236ff;
+  padding: 2.5rem 4rem;
+  max-width: 30rem;
+  margin: 0 auto;
+  border-radius: 2rem;
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+  color: #fbfdfc;
+  margin-bottom: 4rem;
+  font-size: 2rem;
+}
+
+.country-detail {
+  margin: 0 auto;
+  text-transform: uppercase;
+  background-color: #fbfdfc;
+  color: #1a1053;
+  margin-top: 2rem;
+  padding: 2rem 0;
+  width: 20rem;
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 2rem;
+  font-size: 2rem;
+  transition: all 0.3s cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  cursor: pointer;
+}
+
+.country-detail:hover {
+  background-color: #1a1053;
+  color: #fbfdfc;
+}
+
+.country-detail:nth-last-child(1) {
+  margin-bottom: 6rem;
 }

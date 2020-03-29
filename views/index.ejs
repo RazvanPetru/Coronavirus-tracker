@@ -2,24 +2,61 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="../public/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coronavirus Tracker</title>
+  <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 
 <body>
-    <header class="header">
-        <div class="header__title">
-            <h1>Tracking coronavirus COVID-19</h1>
-        </div>
-        <div class="header__content">
-            <p class="items">Confirmed<br> <span class="item confirmed"><%= coronavirus.confirmed %></span></p>
-            <p class="items">Recovered<br> <span class="item recovered"><%= coronavirus.recovered %></span></p>
-            <p class="items">Deaths<br> <span class="item deaths"><%= coronavirus.deaths %></span> </p>
-        </div>
-    </header>
+  <header class="header">
+    <div class="header__title">
+      <h1><span id="covid">Covid-19</span> Global Trend</h1>
+    </div>
+    <div class="header__data">
+      <p class="date">
+        Last Update<br />
+        <span class="update-date"><%= corona.lastUpdate %></span>
+      </p>
+    </div>
+    <div class="header__content">
+      <p class="items">
+        Confirmed<br />
+        <span class="item confirmed"><%= corona.confirmed.value %></span>
+      </p>
+      <p class="items">
+        Recovered<br />
+        <span class="item recovered"><%= corona.recovered.value %></span>
+      </p>
+      <p class="items">
+        Deaths<br />
+        <span class="item deaths"><%= corona.deaths.value %></span>
+      </p>
+    </div>
+  </header>
+
+  <section class="countries">
+    <div class="countries__country">
+      <p id="romania"><%- countries[134] %></p>
+    </div>
+
+    <div class="countries__detail">
+      <p class="country-detail">
+        Confirmed<br />
+        <span class="detail confirmed"><%= detailCountry.confirmed.value %></span>
+      </p>
+      <p class="country-detail">
+        Recovered<br />
+        <span class="detail recovered"><%= detailCountry.recovered.value %></span>
+      </p>
+      <p class="country-detail">
+        Deaths<br />
+        <span class="detail deaths"><%= detailCountry.deaths.value %></span>
+      </p>
+    </div>
+
+  </section>
 </body>
 
 </html>

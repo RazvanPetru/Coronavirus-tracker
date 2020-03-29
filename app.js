@@ -2,6 +2,7 @@ const express = require("express");
 const bodyparser = require("body-parser");
 const request = require("request");
 const ejs = require("ejs");
+const axios = require("axios");
 
 const app = express();
 const port = 3000;
@@ -16,30 +17,31 @@ app.use(
 
 app.use("/public", express.static("public"));
 
+var baseURL = "https://covid19.mathdro.id/api";
+var countryURL = "https://covid19.mathdro.id/api/countries";
+var countryDetail = `https://covid19.mathdro.id/api/countries/ROMANIA`;
+
 app.get("/", (req, res) => {
-  var baseURL = "https://covid19.mathdro.id/api";
-  var countryURL = "https://covid19.mathdro.id/api/countries";
-  request(baseURL, (error, response, body) => {
-    var data = JSON.parse(body);
-    var coronavirus = {
-      confirmed: data.confirmed.value,
-      recovered: data.recovered.value,
-      deaths: data.deaths.value
-    };
+  axios
+    .all([axios.get(baseURL), axios.get(countryURL), axios.get(countryDetail)])
+    .then(
+      axios.spread((corona, countries, detail) => {
+        console.log(corona.data);
+        var corona = corona.data;
+        var countries = countries.data.countries.map(item => item.name);
+        var detailCountry = detail.data;
+        console.log(detail);
 
-    var coronavirus_data = { coronavirus: coronavirus };
-    res.render("index", coronavirus_data);
-  });
-
-  request(countryURL, (error, response, body) => {
-    var data = JSON.parse(body);
-    console.log(data.country);
-    var countries = {
-      country: data.countries
-    };
-
-    var countries_data = { countries: countries };
-  });
+        res.render("index", {
+          corona: corona,
+          countries: countries,
+          detailCountry: detailCountry
+        });
+      })
+    )
+    .catch(error => {
+      console.log(error);
+    });
 });
 
 app.listen(port, () => {
