@@ -32,9 +32,10 @@ app.get("/", (req, res) => {
       axios.spread((corona, countries, recovered, deaths, cases) => {
         var corona = corona.data;
         var countries = countries.data.reverse().map(ctr => ctr.country);
-        var recovered = recovered.data.map(i => i.recovered);
-        var deaths = deaths.data.map(d => d.deaths);
-        var cases = cases.data.map(c => c.cases);
+        var recovered = recovered.data.reverse().map(i => i.recovered);
+        var deaths = deaths.data.reverse().map(d => d.deaths);
+        var cases = cases.data.reverse().map(c => c.cases);
+
 
         res.render("index", {
           corona: corona,
@@ -44,8 +45,7 @@ app.get("/", (req, res) => {
           cases: cases,
           moment: moment
         });
-      })
-    )
+      }))
     .catch(error => {
       console.log(error);
     });
