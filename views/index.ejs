@@ -7,6 +7,7 @@
   <title>Coronavirus Tracker</title>
   <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <script defer src="../public/js/index.js"></script>
 </head>
 
@@ -36,13 +37,22 @@
         <span class="item deaths"><%= corona.recovered %></span>
       </p>
     </div>
+
+    <div class="scroll-for-more">
+      <i class="fas fa-arrow-down"></i>
+    </div>
   </header>
 
   <section class="countries">
     <% for(let i = 0; i < countries.length; i++) { %>
     <div class="countries__container">
       <div class="countries__country">
-        <button class="btn"><%- countries[i] %></button>
+        <div class="btn"><%- countries[i] %>
+          <div class="stats">
+            <p id="cases">+ <%= tc[i] %></p>
+            <p id="deaths">+ <%= td[i] %> </p>
+          </div>
+        </div>
       </div>
       <div class="countries__detail">
         <p class="country-detail">

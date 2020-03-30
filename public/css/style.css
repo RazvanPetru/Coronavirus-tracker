@@ -43,13 +43,17 @@ h1 {
   width: 100%;
 }
 
+.header__content:nth-of-type(3) {
+  margin-bottom: 6rem;
+}
+
 .items {
   margin: 1rem 1rem;
   padding-top: 1rem;
   text-transform: uppercase;
   color: #1a1053;
   background-color: #fbfdfc;
-  font-size: 4rem;
+  font-size: 3.5rem;
   padding: 1rem 2rem;
   border-radius: 2rem;
   box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
@@ -80,7 +84,13 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 15rem;
+  margin-top: 6rem;
+}
+
+@media (min-width: 700px) {
+  .date {
+    margin-top: 15rem;
+  }
 }
 
 .update-date {
@@ -111,7 +121,7 @@ h1 {
 }
 
 .btn {
-  background-color: #6236ff;
+  background-color: #1a1053;
   padding: 2.5rem 4rem;
   width: 30rem;
   margin: 0 auto;
@@ -121,6 +131,9 @@ h1 {
   margin-bottom: 4rem;
   font-size: 2rem;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .btn:focus {
@@ -148,4 +161,27 @@ h1 {
 
 .country-detail:nth-last-child(1) {
   margin-bottom: 6rem;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+}
+
+#cases {
+  padding-bottom: 1rem;
+  color: #fa6400;
+}
+
+#deaths {
+  color: #f9345e;
+}
+
+.scroll-for-more {
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  color: #6236ff;
 }

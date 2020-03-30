@@ -24,28 +24,52 @@ var recoveredURL =
   "http://api.coronastatistics.live/countries?sort={parameter}";
 var deathsURL = "http://api.coronastatistics.live/countries?sort={parameter}";
 var casesURL = "http://api.coronastatistics.live/countries?sort={parameter}";
+var todayCases = "http://api.coronastatistics.live/countries?sort={parameter}";
+var todayDeaths = "http://api.coronastatistics.live/countries?sort={parameter}";
 
 app.get("/", (req, res) => {
   axios
-    .all([axios.get(baseURL), axios.get(countryURL), axios.get(recoveredURL), axios.get(deathsURL), axios.get(casesURL)])
+    .all([
+      axios.get(baseURL),
+      axios.get(countryURL),
+      axios.get(recoveredURL),
+      axios.get(deathsURL),
+      axios.get(casesURL),
+      axios.get(todayCases),
+      axios.get(todayDeaths)
+    ])
     .then(
-      axios.spread((corona, countries, recovered, deaths, cases) => {
-        var corona = corona.data;
-        var countries = countries.data.reverse().map(ctr => ctr.country);
-        var recovered = recovered.data.reverse().map(i => i.recovered);
-        var deaths = deaths.data.reverse().map(d => d.deaths);
-        var cases = cases.data.reverse().map(c => c.cases);
+      axios.spread(
+        (
+          corona,
+          countries,
+          recovered,
+          deaths,
+          cases,
+          todayCases,
+          todayDeaths
+        ) => {
+          var corona = corona.data;
+          var countries = countries.data.reverse().map(ctr => ctr.country);
+          var recovered = recovered.data.reverse().map(i => i.recovered);
+          var deaths = deaths.data.reverse().map(d => d.deaths);
+          var cases = cases.data.reverse().map(c => c.cases);
+          var tc = todayCases.data.reverse().map(tc => tc.todayCases);
+          var td = todayDeaths.data.reverse().map(c => c.todayDeaths);
 
-
-        res.render("index", {
-          corona: corona,
-          countries: countries,
-          recovered: recovered,
-          deaths: deaths,
-          cases: cases,
-          moment: moment
-        });
-      }))
+          res.render("index", {
+            corona: corona,
+            countries: countries,
+            recovered: recovered,
+            deaths: deaths,
+            cases: cases,
+            tc: tc,
+            td: td,
+            moment: moment
+          });
+        }
+      )
+    )
     .catch(error => {
       console.log(error);
     });
