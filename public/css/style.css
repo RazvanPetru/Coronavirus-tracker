@@ -178,10 +178,9 @@ h1 {
 }
 
 .scroll-for-more {
-  position: absolute;
-  top: 95%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
   color: #6236ff;
 }
