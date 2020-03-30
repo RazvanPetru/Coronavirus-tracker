@@ -19,30 +19,22 @@ app.use(
 app.use("/public", express.static("public"));
 
 var baseURL = "http://api.coronastatistics.live/all";
-var countryURL = "http://api.coronastatistics.live/countries?sort={data.cases}";
+var countryURL = "http://api.coronastatistics.live/countries?sort={parameter}";
 var recoveredURL =
   "http://api.coronastatistics.live/countries?sort={parameter}";
-var deathsURL = "http://api.coronastatistics.live/countries?sort={cases}";
-var casesURL = "http://api.coronastatistics.live/countries?sort={cases}";
+var deathsURL = "http://api.coronastatistics.live/countries?sort={parameter}";
+var casesURL = "http://api.coronastatistics.live/countries?sort={parameter}";
 
 app.get("/", (req, res) => {
   axios
-    .all([
-      axios.get(baseURL),
-      axios.get(countryURL),
-      axios.get(recoveredURL),
-      axios.get(deathsURL),
-      axios.get(casesURL)
-    ])
+    .all([axios.get(baseURL), axios.get(countryURL), axios.get(recoveredURL), axios.get(deathsURL), axios.get(casesURL)])
     .then(
       axios.spread((corona, countries, recovered, deaths, cases) => {
         var corona = corona.data;
-        var countries = countries.data.map(ctr => ctr.country);
+        var countries = countries.data.reverse().map(ctr => ctr.country);
         var recovered = recovered.data.map(i => i.recovered);
         var deaths = deaths.data.map(d => d.deaths);
         var cases = cases.data.map(c => c.cases);
-
-        countries.sort((a, b) => a - b);
 
         res.render("index", {
           corona: corona,
